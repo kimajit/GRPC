@@ -1,0 +1,44 @@
+syntax ="proto3";
+
+option go_package = "./data";
+
+
+service UserData {
+    rpc GetData(GetDataRequest) returns (GetDataResponse);
+    rpc GetAllData(GetAllDataRequest) returns (GetAllDataResponse);
+    rpc SearchAllData(SearchAllDataRequest) returns (SearchAllDataResponse);
+  }
+  message GetDataRequest {
+    int32 id = 1;
+  }
+  
+  message GetDataResponse {
+    Data user = 1;
+  }
+  
+  message GetAllDataRequest {
+    repeated int32 ids = 1;
+  }
+  
+  message GetAllDataResponse {
+    repeated Data users = 1;
+  }
+  
+  message SearchAllDataRequest {
+    string city = 1;
+    int64 phone = 2;
+    bool married = 3;
+  }
+  
+  message SearchAllDataResponse {
+    repeated Data users = 1;
+  }
+  
+  message Data {
+    int32 id = 1;
+    string fname = 2;
+    string city = 3;
+    int64 phone = 4;
+    float height = 5;
+    bool married = 6;
+  }
